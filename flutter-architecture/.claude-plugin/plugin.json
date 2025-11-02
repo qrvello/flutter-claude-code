@@ -1,0 +1,8 @@
+{
+  "name": "flutter-architecture",
+  "description": "Flutter architecture and state management agents. Includes State Management (Provider, Riverpod, BLoC, Redux, GetX) and Architect (Clean Architecture, project structure, dependency injection).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "flutter-backend",
+  "description": "Flutter backend integration agents. Includes REST API (Dio, HTTP clients), GraphQL (graphql_flutter), Firebase (Authentication, Firestore, FCM), and AWS (Amplify, Cognito, S3, AppSync).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

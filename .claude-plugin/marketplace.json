@@ -1,0 +1,49 @@
+{
+  "name": "flutter-claude-code",
+  "owner": {
+    "name": "Flutter Claude Code Contributors"
+  },
+  "description": "Comprehensive Flutter development agents and skills for Claude Code",
+  "plugins": [
+    {
+      "name": "flutter-all",
+      "source": "./flutter-all",
+      "description": "Complete Flutter development suite with all agents and skills"
+    },
+    {
+      "name": "flutter-ui",
+      "source": "./flutter-ui",
+      "description": "Flutter UI design and implementation agents"
+    },
+    {
+      "name": "flutter-testing-performance",
+      "source": "./flutter-testing-performance",
+      "description": "Flutter testing and performance optimization agents"
+    },
+    {
+      "name": "flutter-architecture",
+      "source": "./flutter-architecture",
+      "description": "Flutter architecture and state management agents"
+    },
+    {
+      "name": "flutter-platform",
+      "source": "./flutter-platform",
+      "description": "Flutter platform integration agents (iOS, Android, device management)"
+    },
+    {
+      "name": "flutter-backend",
+      "source": "./flutter-backend",
+      "description": "Flutter backend integration agents (REST, GraphQL, Firebase, AWS)"
+    },
+    {
+      "name": "flutter-deployment",
+      "source": "./flutter-deployment",
+      "description": "Flutter deployment agents for iOS and Android"
+    },
+    {
+      "name": "flutter-patterns",
+      "source": "./flutter-patterns",
+      "description": "Flutter development patterns and best practices skill"
+    }
+  ]
+}

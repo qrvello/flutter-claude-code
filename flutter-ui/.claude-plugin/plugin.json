@@ -1,0 +1,8 @@
+{
+  "name": "flutter-ui",
+  "description": "Flutter UI design and implementation agents. Includes UI Designer (design analysis), UI Implementer (code generation), UI Comparison (pixel-perfect validation), and Design Iteration Coordinator (complete design-to-implementation workflow).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

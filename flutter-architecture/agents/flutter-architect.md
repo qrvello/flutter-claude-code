@@ -1,0 +1,1 @@
+../../.claude/agents/flutter-architect.md

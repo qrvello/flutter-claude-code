@@ -1,0 +1,8 @@
+{
+  "name": "flutter-patterns",
+  "description": "Comprehensive Flutter development patterns skill covering widgets, testing, performance optimization, security best practices, and animations. Quick reference for Flutter best practices and common patterns.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

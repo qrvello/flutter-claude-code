@@ -1,0 +1,8 @@
+{
+  "name": "flutter-platform",
+  "description": "Flutter platform integration agents. Includes iOS Integration, Android Integration, Platform Channel Architect (cross-platform communication), and Device Orchestrator (simulator/emulator management).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

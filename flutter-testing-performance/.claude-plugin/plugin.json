@@ -1,0 +1,8 @@
+{
+  "name": "flutter-testing-performance",
+  "description": "Flutter testing and performance optimization agents. Includes Testing (unit, widget, integration tests), Performance Analyzer (profiling and bottleneck detection), and Performance Optimizer (applying optimization patterns).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

@@ -1,0 +1,1 @@
+../../.claude/agents/flutter-state-management.md

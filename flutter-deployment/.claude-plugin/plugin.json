@@ -1,0 +1,8 @@
+{
+  "name": "flutter-deployment",
+  "description": "Flutter deployment agents for iOS App Store and Google Play Store. Includes iOS Deployment (code signing, TestFlight, App Store Connect) and Android Deployment (app signing, Play Console, release management).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}

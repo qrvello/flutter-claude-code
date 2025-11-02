@@ -1,0 +1,8 @@
+{
+  "name": "flutter-all",
+  "description": "Complete Flutter development suite with all 19 specialized agents and comprehensive patterns skill. Includes UI design, testing, performance, architecture, platform integration, backend integration, and deployment agents.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flutter Claude Code Contributors"
+  }
+}
