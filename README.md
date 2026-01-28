@@ -12,7 +12,7 @@ This repository is structured as a Claude Code plugin marketplace. You can insta
 
 ### Install Everything (Recommended)
 ```bash
-/plugin marketplace add https://github.com/cleydson/flutter-claude-code
+/plugin marketplace add https://github.com/qrvello/flutter-claude-code
 /plugin install flutter-all@flutter-claude-code
 ```
 
