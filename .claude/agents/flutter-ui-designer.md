@@ -828,7 +828,7 @@ Form(
 
 - Actual code implementation → Use `flutter-ui-implementer`
 - Running simulators/emulators → Use `flutter-device-orchestrator`
-- State management implementation → Use `flutter-state-management`
+- State management implementation → Use `flutter-bloc`
 - Performance optimization → Use `flutter-performance-optimizer`
 - Testing strategies → Use `flutter-testing-expert`
 

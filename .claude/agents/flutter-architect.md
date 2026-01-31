@@ -1252,7 +1252,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
 **Outside this agent's scope:**
 
-- State management implementation details → Use `flutter-state-management`
+- State management implementation details → Use `flutter-bloc`
 - UI implementation → Use `flutter-ui-implementer`
 - Platform-specific architecture → Use platform specialists
 - Performance optimization → Use `flutter-performance-optimizer`

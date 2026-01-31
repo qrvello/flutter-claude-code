@@ -16,7 +16,7 @@ This plugin includes all 19 Flutter development agents and the comprehensive pat
 - flutter-performance-optimizer
 
 ### Architecture & State (2 agents)
-- flutter-state-management
+- flutter-bloc
 - flutter-architect
 
 ### Platform Integration (4 agents)

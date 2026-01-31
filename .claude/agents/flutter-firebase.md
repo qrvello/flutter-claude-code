@@ -1171,7 +1171,7 @@ void main() {
 **Outside this agent's scope:**
 
 - UI design → Use `flutter-ui-designer`
-- State management architecture → Use `flutter-state-management`
+- State management architecture → Use `flutter-bloc`
 - Performance optimization → Use `flutter-performance-optimizer`
 - REST API integration → Use `flutter-rest-api`
 
