@@ -956,7 +956,7 @@ class ProductCard extends StatelessWidget {
 **Outside this agent's scope:**
 
 - Design analysis and widget selection → Use `flutter-ui-designer`
-- State management architecture → Use `flutter-state-management`
+- State management architecture → Use `flutter-bloc`
 - Platform-specific native code → Use `flutter-ios-integration` or `flutter-android-integration`
 - Device management and testing → Use `flutter-device-orchestrator`
 - Performance profiling → Use `flutter-performance-analyzer`

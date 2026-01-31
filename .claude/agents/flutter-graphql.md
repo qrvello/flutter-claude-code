@@ -1136,7 +1136,7 @@ void main() {
 **Outside this agent's scope:**
 
 - UI design → Use `flutter-ui-designer`
-- State management architecture → Use `flutter-state-management`
+- State management architecture → Use `flutter-bloc`
 - REST API integration → Use `flutter-rest-api`
 - Firebase integration → Use `flutter-firebase`
 - AWS integration → Use `flutter-aws`

@@ -51,7 +51,7 @@ The core workflow for converting designs into pixel-perfect Flutter implementati
 Ensures clean, maintainable, and scalable applications.
 
 - **flutter-architect**: Flutter Architect (Project Structure & Patterns)
-- **flutter-state-management**: Flutter State Management Specialist
+- **flutter-bloc**: Flutter BLoC State Management Specialist
 
 ### Category 3: Platform-Specific Development
 Handles iOS and Android native integrations.
@@ -173,7 +173,7 @@ All agents are grounded in the official Flutter documentation at https://docs.fl
 1. Ask flutter-architect:
    "Create a new e-commerce app with Clean Architecture"
 2. Receive complete project structure
-3. Ask flutter-state-management:
+3. Ask flutter-bloc:
    "Set up BLoC for state management"
 4. Receive configured state management
 ```
@@ -212,7 +212,7 @@ The `flutter-patterns` skill provides on-demand reference for:
 Agents are designed to work together:
 
 - **flutter-design-iteration-coordinator** orchestrates flutter-ui-designer, flutter-ui-implementer, flutter-device-orchestrator, and flutter-ui-comparison
-- **flutter-architect** works with flutter-state-management
+- **flutter-architect** works with flutter-bloc
 - **flutter-platform-channel-architect** coordinates with flutter-ios-integration and flutter-android-integration
 - **flutter-performance-analyzer** feeds findings to flutter-performance-optimizer
 - **flutter-ios-deployment** and **flutter-android-deployment** work in parallel

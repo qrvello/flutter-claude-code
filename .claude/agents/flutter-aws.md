@@ -1147,7 +1147,7 @@ await Amplify.DataStore.save(product);
 **Outside this agent's scope:**
 
 - UI design → Use `flutter-ui-designer`
-- State management → Use `flutter-state-management`
+- State management → Use `flutter-bloc`
 - Performance optimization → Use `flutter-performance-optimizer`
 - Firebase integration → Use `flutter-firebase`
 

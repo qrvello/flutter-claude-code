@@ -41,7 +41,7 @@ If you only need specific functionality, install individual plugin categories:
 /plugin install flutter-architecture@flutter-claude-code
 ```
 **Includes:**
-- `flutter-state-management` - Provider, Riverpod, BLoC, Redux, GetX
+- `flutter-bloc` - BLoC pattern state management with Cubit, flutter_bloc widgets, testing, and persistence
 - `flutter-architect` - Clean Architecture, project structure, dependency injection
 
 #### Platform Integration
@@ -92,7 +92,7 @@ Claude Code will automatically use the `flutter-ui-designer` agent to analyze th
 You can also explicitly request specific agents:
 
 ```
-Use the flutter-state-management agent to help me implement BLoC for authentication
+Use the flutter-bloc agent to help me implement BLoC for authentication
 ```
 
 ## Using the Skill
@@ -162,7 +162,7 @@ To remove a plugin:
 - **flutter-performance-optimizer** - Performance optimization implementation
 
 ### Architecture & State (flutter-architecture)
-- **flutter-state-management** - Provider, Riverpod, BLoC, Redux, GetX implementation
+- **flutter-bloc** - BLoC pattern state management with Cubit, flutter_bloc widgets, testing, and persistence
 - **flutter-architect** - Clean Architecture, project structure, DI patterns
 
 ### Platform Integration (flutter-platform)
