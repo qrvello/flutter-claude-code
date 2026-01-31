@@ -73,25 +73,34 @@ final dio = Dio(BaseOptions(
 ### ✅ Certificate Pinning
 
 ```dart
+import 'dart:io';
+import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
-import 'package:dio/adapter.dart';
+import 'package:dio/io.dart';
 
 class SecureApiClient {
   final Dio dio;
 
   SecureApiClient() : dio = Dio() {
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.badCertificateCallback = (cert, host, port) {
-        // Certificate pinning
-        final certSha256 = sha256.convert(cert.der).toString();
-        const expectedHash = 'YOUR_CERTIFICATE_SHA256_HASH';
-        return certSha256 == expectedHash;
-      };
-      return client;
-    };
+    // Dio 5.x+ certificate pinning
+    dio.httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () {
+        final client = HttpClient();
+        client.badCertificateCallback = (cert, host, port) {
+          // Certificate pinning - compare SHA256 fingerprint
+          final certSha256 = sha256.convert(cert.der).toString();
+          const expectedHash = 'YOUR_CERTIFICATE_SHA256_HASH';
+          return certSha256 == expectedHash;
+        };
+        return client;
+      },
+    );
   }
 }
+
+// Alternative: Use dio_certificate_pinning package for easier management
+// dependencies:
+//   native_dio_adapter: ^1.2.0
 ```
 
 ## Authentication Security

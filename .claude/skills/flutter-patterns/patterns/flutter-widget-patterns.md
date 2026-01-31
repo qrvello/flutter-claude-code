@@ -7,26 +7,29 @@ description: Common Flutter widget composition patterns and reusable layouts. Us
 
 This skill provides battle-tested widget patterns for common UI components.
 
+> **Performance Tip:** Always use `const` constructors for static widgets (Text, Icon, SizedBox, EdgeInsets, etc.) to prevent unnecessary rebuilds. Use `super.key` in widget constructors (Dart 2.17+).
+
 ## Card Patterns
 
 ### Basic Card
 
 ```dart
 // Simple card with shadow and padding
+// Note: Use const wherever possible for performance
 Card(
   elevation: 4,
-  margin: EdgeInsets.all(16),
+  margin: const EdgeInsets.all(16),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(12),
   ),
   child: Padding(
-    padding: EdgeInsets.all(16),
+    padding: const EdgeInsets.all(16),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Title', style: Theme.of(context).textTheme.titleLarge),
-        SizedBox(height: 8),
-        Text('Description'),
+        const SizedBox(height: 8),
+        const Text('Description'),
       ],
     ),
   ),
