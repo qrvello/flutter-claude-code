@@ -351,6 +351,8 @@ class ProductModel with _$ProductModel {
     required double price,
     @JsonKey(name: 'image_url') String? imageUrl,
     @JsonKey(name: 'created_at') required DateTime createdAt,
+    CategoryModel? category,
+    @Default([]) List<String> tags,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -363,6 +365,161 @@ class ProductModel with _$ProductModel {
 // - Equality (==) and hashCode
 // - toString() implementation
 // - Union types for complex scenarios
+```
+
+### Nested Models with Freezed
+
+```dart
+// lib/features/products/data/models/category_model.dart
+@freezed
+class CategoryModel with _$CategoryModel {
+  const factory CategoryModel({
+    required String id,
+    required String name,
+    String? description,
+    @JsonKey(name: 'parent_id') String? parentId,
+  }) = _CategoryModel;
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
+}
+
+// lib/features/users/data/models/user_model.dart
+@freezed
+class UserModel with _$UserModel {
+  const factory UserModel({
+    required String id,
+    required String email,
+    String? name,
+    @JsonKey(name: 'avatar_url') String? avatarUrl,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    @Default(UserRole.user) UserRole role,
+  }) = _UserModel;
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+}
+
+enum UserRole {
+  @JsonValue('user') user,
+  @JsonValue('admin') admin,
+  @JsonValue('moderator') moderator,
+}
+```
+
+### API Response Wrappers with Freezed
+
+```dart
+// lib/core/network/models/api_response.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'api_response.freezed.dart';
+part 'api_response.g.dart';
+
+/// Generic API response wrapper for single items.
+@Freezed(genericArgumentFactories: true)
+class ApiResponse<T> with _$ApiResponse<T> {
+  const factory ApiResponse({
+    required T data,
+    String? message,
+    ApiMeta? meta,
+  }) = _ApiResponse<T>;
+
+  factory ApiResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$ApiResponseFromJson(json, fromJsonT);
+}
+
+/// Generic paginated response wrapper.
+@Freezed(genericArgumentFactories: true)
+class PaginatedResponse<T> with _$PaginatedResponse<T> {
+  const factory PaginatedResponse({
+    required List<T> data,
+    required PaginationMeta pagination,
+  }) = _PaginatedResponse<T>;
+
+  factory PaginatedResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$PaginatedResponseFromJson(json, fromJsonT);
+}
+
+@freezed
+class PaginationMeta with _$PaginationMeta {
+  const factory PaginationMeta({
+    required int page,
+    required int limit,
+    @JsonKey(name: 'total_count') required int totalCount,
+    @JsonKey(name: 'total_pages') required int totalPages,
+    @JsonKey(name: 'has_next') required bool hasNext,
+    @JsonKey(name: 'has_previous') required bool hasPrevious,
+  }) = _PaginationMeta;
+
+  factory PaginationMeta.fromJson(Map<String, dynamic> json) =>
+      _$PaginationMetaFromJson(json);
+}
+
+@freezed
+class ApiMeta with _$ApiMeta {
+  const factory ApiMeta({
+    @JsonKey(name: 'request_id') String? requestId,
+    int? timestamp,
+  }) = _ApiMeta;
+
+  factory ApiMeta.fromJson(Map<String, dynamic> json) =>
+      _$ApiMetaFromJson(json);
+}
+```
+
+### Union Types for API States
+
+```dart
+// lib/core/network/models/api_result.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'api_result.freezed.dart';
+
+/// Represents the result of an API call with union types.
+@freezed
+sealed class ApiResult<T> with _$ApiResult<T> {
+  const factory ApiResult.success(T data) = ApiSuccess<T>;
+  const factory ApiResult.error(ApiError error) = ApiFailure<T>;
+  const factory ApiResult.loading() = ApiLoading<T>;
+}
+
+@freezed
+class ApiError with _$ApiError {
+  const factory ApiError({
+    required String message,
+    required int statusCode,
+    String? code,
+    Map<String, dynamic>? details,
+  }) = _ApiError;
+}
+
+// Usage in repository:
+Future<ApiResult<ProductModel>> getProduct(String id) async {
+  try {
+    final response = await _apiClient.dio.get('/products/$id');
+    final product = ProductModel.fromJson(response.data);
+    return ApiResult.success(product);
+  } on DioException catch (e) {
+    return ApiResult.error(ApiError(
+      message: e.message ?? 'Unknown error',
+      statusCode: e.response?.statusCode ?? 0,
+    ));
+  }
+}
+
+// Usage in UI with pattern matching:
+apiResult.when(
+  success: (product) => ProductDetail(product: product),
+  error: (error) => ErrorWidget(message: error.message),
+  loading: () => const LoadingIndicator(),
+);
 ```
 
 ## Advanced Features

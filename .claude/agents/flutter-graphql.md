@@ -289,6 +289,116 @@ class ProductsListPage extends StatelessWidget {
 }
 ```
 
+### GraphQL Data Models with Freezed
+
+```dart
+// lib/features/products/data/models/product_model.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'product_model.freezed.dart';
+part 'product_model.g.dart';
+
+@freezed
+class Product with _$Product {
+  const factory Product({
+    required String id,
+    required String name,
+    String? description,
+    required double price,
+    @JsonKey(name: 'imageUrl') String? imageUrl,
+    Category? category,
+    @Default([]) List<Review> reviews,
+  }) = _Product;
+
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
+}
+
+@freezed
+class Category with _$Category {
+  const factory Category({
+    required String id,
+    required String name,
+  }) = _Category;
+
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
+}
+
+@freezed
+class Review with _$Review {
+  const factory Review({
+    required String id,
+    required int rating,
+    String? comment,
+    required User user,
+  }) = _Review;
+
+  factory Review.fromJson(Map<String, dynamic> json) =>
+      _$ReviewFromJson(json);
+}
+
+@freezed
+class User with _$User {
+  const factory User({
+    required String id,
+    required String name,
+    String? avatar,
+  }) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) =>
+      _$UserFromJson(json);
+}
+
+// lib/features/chat/data/models/message_model.dart
+@freezed
+class Message with _$Message {
+  const factory Message({
+    required String id,
+    required String text,
+    @JsonKey(name: 'createdAt') required DateTime createdAt,
+    required User user,
+  }) = _Message;
+
+  factory Message.fromJson(Map<String, dynamic> json) =>
+      _$MessageFromJson(json);
+}
+
+// lib/features/products/data/models/pagination_model.dart
+@freezed
+class ProductEdge with _$ProductEdge {
+  const factory ProductEdge({
+    required String cursor,
+    required Product node,
+  }) = _ProductEdge;
+
+  factory ProductEdge.fromJson(Map<String, dynamic> json) =>
+      _$ProductEdgeFromJson(json);
+}
+
+@freezed
+class PageInfo with _$PageInfo {
+  const factory PageInfo({
+    required bool hasNextPage,
+    String? endCursor,
+  }) = _PageInfo;
+
+  factory PageInfo.fromJson(Map<String, dynamic> json) =>
+      _$PageInfoFromJson(json);
+}
+
+@freezed
+class ProductConnection with _$ProductConnection {
+  const factory ProductConnection({
+    required List<ProductEdge> edges,
+    required PageInfo pageInfo,
+  }) = _ProductConnection;
+
+  factory ProductConnection.fromJson(Map<String, dynamic> json) =>
+      _$ProductConnectionFromJson(json);
+}
+```
+
 ### Imperative Query
 
 ```dart
@@ -412,6 +522,58 @@ class PaginatedProductsPage extends StatelessWidget {
 ```
 
 ## GraphQL Mutations
+
+### GraphQL Mutation Input Models with Freezed
+
+```dart
+// lib/features/products/data/models/product_input.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'product_input.freezed.dart';
+part 'product_input.g.dart';
+
+/// Input model for creating a new product.
+@freezed
+class CreateProductInput with _$CreateProductInput {
+  const factory CreateProductInput({
+    required String name,
+    String? description,
+    required double price,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    String? category,
+  }) = _CreateProductInput;
+
+  factory CreateProductInput.fromJson(Map<String, dynamic> json) =>
+      _$CreateProductInputFromJson(json);
+}
+
+/// Input model for updating an existing product.
+@freezed
+class UpdateProductInput with _$UpdateProductInput {
+  const factory UpdateProductInput({
+    String? name,
+    String? description,
+    double? price,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    String? category,
+  }) = _UpdateProductInput;
+
+  factory UpdateProductInput.fromJson(Map<String, dynamic> json) =>
+      _$UpdateProductInputFromJson(json);
+}
+
+/// Response model for delete mutations.
+@freezed
+class DeleteResult with _$DeleteResult {
+  const factory DeleteResult({
+    required bool success,
+    String? message,
+  }) = _DeleteResult;
+
+  factory DeleteResult.fromJson(Map<String, dynamic> json) =>
+      _$DeleteResultFromJson(json);
+}
+```
 
 ### Mutation Definitions
 

@@ -542,6 +542,81 @@ class AmplifyAPIDataSource {
 }
 ```
 
+### AWS Data Models with Freezed
+
+```dart
+// lib/features/products/data/models/product_model.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'product_model.freezed.dart';
+part 'product_model.g.dart';
+
+/// Product model for AWS API Gateway and AppSync.
+@freezed
+class Product with _$Product {
+  const factory Product({
+    required String id,
+    required String name,
+    String? description,
+    required double price,
+    String? category,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+  }) = _Product;
+
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
+}
+
+/// User profile model for Cognito integration.
+@freezed
+class UserProfile with _$UserProfile {
+  const factory UserProfile({
+    required String userId,
+    required String email,
+    String? name,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'profile_picture_url') String? profilePictureUrl,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+  }) = _UserProfile;
+
+  factory UserProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileFromJson(json);
+}
+
+/// API response wrapper for paginated data.
+@freezed
+class PaginatedResponse<T> with _$PaginatedResponse<T> {
+  const factory PaginatedResponse({
+    required List<T> items,
+    @JsonKey(name: 'next_token') String? nextToken,
+    @JsonKey(name: 'total_count') int? totalCount,
+  }) = _PaginatedResponse<T>;
+
+  factory PaginatedResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$PaginatedResponseFromJson(json, fromJsonT);
+}
+
+/// Storage file metadata model.
+@freezed
+class StorageFileMetadata with _$StorageFileMetadata {
+  const factory StorageFileMetadata({
+    required String key,
+    required String url,
+    @JsonKey(name: 'content_type') String? contentType,
+    int? size,
+    @JsonKey(name: 'last_modified') DateTime? lastModified,
+  }) = _StorageFileMetadata;
+
+  factory StorageFileMetadata.fromJson(Map<String, dynamic> json) =>
+      _$StorageFileMetadataFromJson(json);
+}
+```
+
 ### API Repository Example
 
 ```dart
@@ -934,10 +1009,69 @@ enum OrderStatus {
 }
 ```
 
+### AppSync Data Models with Freezed
+
+```dart
+// lib/features/orders/data/models/order_model.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'order_model.freezed.dart';
+part 'order_model.g.dart';
+
+/// Order model for AppSync GraphQL API.
+@freezed
+class Order with _$Order {
+  const factory Order({
+    required String id,
+    @JsonKey(name: 'userId') required String userId,
+    @Default([]) List<OrderItem> items,
+    required double total,
+    @Default(OrderStatus.pending) OrderStatus status,
+    @JsonKey(name: 'createdAt') DateTime? createdAt,
+    @JsonKey(name: 'updatedAt') DateTime? updatedAt,
+  }) = _Order;
+
+  factory Order.fromJson(Map<String, dynamic> json) =>
+      _$OrderFromJson(json);
+}
+
+@freezed
+class OrderItem with _$OrderItem {
+  const factory OrderItem({
+    @JsonKey(name: 'productId') required String productId,
+    required int quantity,
+    required double price,
+  }) = _OrderItem;
+
+  factory OrderItem.fromJson(Map<String, dynamic> json) =>
+      _$OrderItemFromJson(json);
+}
+
+enum OrderStatus {
+  @JsonValue('PENDING') pending,
+  @JsonValue('PROCESSING') processing,
+  @JsonValue('SHIPPED') shipped,
+  @JsonValue('DELIVERED') delivered,
+  @JsonValue('CANCELLED') cancelled,
+}
+
+/// AppSync subscription event wrapper.
+@freezed
+class SubscriptionEvent<T> with _$SubscriptionEvent<T> {
+  const factory SubscriptionEvent({
+    required SubscriptionEventType type,
+    required T data,
+  }) = _SubscriptionEvent<T>;
+}
+
+enum SubscriptionEventType { created, updated, deleted }
+```
+
 ### GraphQL Client
 
 ```dart
 // The models are auto-generated in lib/models/
+// For custom models, use Freezed as shown above
 
 // data/datasources/appsync_datasource.dart
 import 'package:amplify_flutter/amplify_flutter.dart';
