@@ -495,51 +495,160 @@ class FirestoreDataSource {
   }
 }
 
-// Helper classes
-class QueryFilter {
-  final String field;
-  final dynamic isEqualTo;
-  final dynamic isGreaterThan;
-  final dynamic isLessThan;
-  final dynamic arrayContains;
+// Helper classes with Freezed + JsonSerializable
+// lib/features/firebase/data/models/query_filter.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  QueryFilter({
-    required this.field,
-    this.isEqualTo,
-    this.isGreaterThan,
-    this.isLessThan,
-    this.arrayContains,
-  });
+part 'query_filter.freezed.dart';
+part 'query_filter.g.dart';
+
+@freezed
+class QueryFilter with _$QueryFilter {
+  const factory QueryFilter({
+    required String field,
+    dynamic isEqualTo,
+    dynamic isGreaterThan,
+    dynamic isLessThan,
+    dynamic arrayContains,
+  }) = _QueryFilter;
+
+  factory QueryFilter.fromJson(Map<String, dynamic> json) =>
+      _$QueryFilterFromJson(json);
 }
 
-class QueryOrder {
-  final String field;
-  final bool descending;
+// lib/features/firebase/data/models/query_order.dart
+@freezed
+class QueryOrder with _$QueryOrder {
+  const factory QueryOrder({
+    required String field,
+    @Default(false) bool descending,
+  }) = _QueryOrder;
 
-  QueryOrder({required this.field, this.descending = false});
+  factory QueryOrder.fromJson(Map<String, dynamic> json) =>
+      _$QueryOrderFromJson(json);
 }
 
+// lib/features/firebase/data/models/batch_operation.dart
 enum BatchOperationType { set, update, delete }
 
-class BatchOperation {
-  final String collection;
-  final String docId;
-  final BatchOperationType type;
-  final Map<String, dynamic>? data;
+@freezed
+class BatchOperation with _$BatchOperation {
+  const factory BatchOperation({
+    required String collection,
+    required String docId,
+    required BatchOperationType type,
+    Map<String, dynamic>? data,
+  }) = _BatchOperation;
 
-  BatchOperation({
-    required this.collection,
-    required this.docId,
-    required this.type,
-    this.data,
-  });
+  factory BatchOperation.fromJson(Map<String, dynamic> json) =>
+      _$BatchOperationFromJson(json);
+}
+```
+
+### Firestore Data Models with Freezed
+
+```dart
+// lib/features/products/data/models/product_model.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+part 'product_model.freezed.dart';
+part 'product_model.g.dart';
+
+@freezed
+class ProductModel with _$ProductModel {
+  const ProductModel._();
+
+  const factory ProductModel({
+    @JsonKey(includeToJson: false) String? id,
+    required String name,
+    String? description,
+    required double price,
+    String? category,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    @Default(true) bool isActive,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+  }) = _ProductModel;
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
+
+  /// Creates a ProductModel from a Firestore DocumentSnapshot.
+  factory ProductModel.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data()!;
+    return ProductModel.fromJson({
+      ...data,
+      'id': doc.id,
+      'created_at': (data['created_at'] as Timestamp?)?.toDate().toIso8601String(),
+      'updated_at': (data['updated_at'] as Timestamp?)?.toDate().toIso8601String(),
+    });
+  }
+
+  /// Converts to Firestore-compatible map with server timestamps.
+  Map<String, dynamic> toFirestore() {
+    return {
+      ...toJson(),
+      'created_at': createdAt != null
+          ? Timestamp.fromDate(createdAt!)
+          : FieldValue.serverTimestamp(),
+      'updated_at': FieldValue.serverTimestamp(),
+    };
+  }
+}
+
+// lib/features/orders/data/models/order_model.dart
+@freezed
+class OrderModel with _$OrderModel {
+  const OrderModel._();
+
+  const factory OrderModel({
+    @JsonKey(includeToJson: false) String? id,
+    @JsonKey(name: 'user_id') required String userId,
+    required List<OrderItemModel> items,
+    required double total,
+    @Default(OrderStatus.pending) OrderStatus status,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+  }) = _OrderModel;
+
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderModelFromJson(json);
+
+  factory OrderModel.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data()!;
+    return OrderModel.fromJson({
+      ...data,
+      'id': doc.id,
+      'created_at': (data['created_at'] as Timestamp?)?.toDate().toIso8601String(),
+    });
+  }
+}
+
+@freezed
+class OrderItemModel with _$OrderItemModel {
+  const factory OrderItemModel({
+    @JsonKey(name: 'product_id') required String productId,
+    required int quantity,
+    required double price,
+  }) = _OrderItemModel;
+
+  factory OrderItemModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderItemModelFromJson(json);
+}
+
+enum OrderStatus {
+  @JsonValue('pending') pending,
+  @JsonValue('processing') processing,
+  @JsonValue('shipped') shipped,
+  @JsonValue('delivered') delivered,
+  @JsonValue('cancelled') cancelled,
 }
 ```
 
 ### Firestore Repository Example
 
 ```dart
-// Example: Products Repository
+// Example: Products Repository with Freezed models
 class ProductsRepository {
   final FirestoreDataSource _dataSource;
   static const _collection = 'products';
@@ -547,61 +656,64 @@ class ProductsRepository {
   ProductsRepository({required FirestoreDataSource dataSource})
       : _dataSource = dataSource;
 
-  // Get all products
-  Stream<List<Product>> watchProducts() {
+  /// Watches all products with real-time updates.
+  Stream<List<ProductModel>> watchProducts() {
     return _dataSource
         .streamDocuments(
           _collection,
-          orderBy: [QueryOrder(field: 'createdAt', descending: true)],
+          orderBy: [const QueryOrder(field: 'created_at', descending: true)],
         )
         .map((snapshot) => snapshot.docs
-            .map((doc) => Product.fromJson(doc.data())..id = doc.id)
+            .map((doc) => ProductModel.fromFirestore(doc))
             .toList());
   }
 
-  // Get product by ID
-  Stream<Product?> watchProduct(String id) {
+  /// Watches a single product by ID.
+  Stream<ProductModel?> watchProduct(String id) {
     return _dataSource.streamDocument(_collection, id).map((doc) {
       if (!doc.exists) return null;
-      return Product.fromJson(doc.data()!)..id = doc.id;
+      return ProductModel.fromFirestore(doc);
     });
   }
 
-  // Add product
-  Future<String> addProduct(Product product) async {
+  /// Adds a new product and returns its ID.
+  Future<String> addProduct(ProductModel product) async {
     final docRef = await _dataSource.addDocument(
       _collection,
-      product.toJson(),
+      product.toFirestore(),
     );
     return docRef.id;
   }
 
-  // Update product
-  Future<void> updateProduct(Product product) async {
+  /// Updates an existing product.
+  Future<void> updateProduct(ProductModel product) async {
+    if (product.id == null) {
+      throw ArgumentError('Product ID is required for update');
+    }
     await _dataSource.updateDocument(
       _collection,
-      product.id,
-      product.toJson(),
+      product.id!,
+      product.toFirestore(),
     );
   }
 
-  // Delete product
+  /// Deletes a product by ID.
   Future<void> deleteProduct(String id) async {
     await _dataSource.deleteDocument(_collection, id);
   }
 
-  // Query products by category
-  Stream<List<Product>> watchProductsByCategory(String category) {
+  /// Watches products filtered by category.
+  Stream<List<ProductModel>> watchProductsByCategory(String category) {
     return _dataSource
         .streamDocuments(
           _collection,
           filters: [
             QueryFilter(field: 'category', isEqualTo: category),
           ],
-          orderBy: [QueryOrder(field: 'name')],
+          orderBy: [const QueryOrder(field: 'name')],
         )
         .map((snapshot) => snapshot.docs
-            .map((doc) => Product.fromJson(doc.data())..id = doc.id)
+            .map((doc) => ProductModel.fromFirestore(doc))
             .toList());
   }
 }
