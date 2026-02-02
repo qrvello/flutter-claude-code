@@ -1,6 +1,6 @@
 ---
 name: flutter-security-patterns
-description: Security best practices for Flutter apps. Covers secure storage, API security, authentication, data protection, and common vulnerability prevention.
+description: Use when handling sensitive data, implementing authentication, making API calls, or preventing security vulnerabilities in Flutter.
 ---
 
 # Flutter Security Patterns

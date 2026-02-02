@@ -1,6 +1,6 @@
 ---
 name: flutter-animation-patterns
-description: Reusable Flutter animation patterns including fade, slide, scale, rotation, and complex transitions. Use this skill for quick animation implementation reference.
+description: Use when adding animations to Flutter apps - fade, slide, scale, page transitions, or list animations.
 ---
 
 # Flutter Animation Patterns - Quick Reference
