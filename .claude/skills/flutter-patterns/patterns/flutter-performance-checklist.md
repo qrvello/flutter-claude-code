@@ -1,6 +1,6 @@
 ---
 name: flutter-performance-checklist
-description: Pre-deployment performance checklist for Flutter apps. Comprehensive verification steps to ensure 60fps performance, optimized builds, and production readiness.
+description: Use before deploying Flutter apps to verify 60fps performance, optimize builds, and prevent memory leaks.
 ---
 
 # Flutter Performance Checklist

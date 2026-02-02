@@ -1,6 +1,6 @@
 ---
 name: flutter-widget-patterns
-description: Common Flutter widget composition patterns and reusable layouts. Use this skill when you need quick reference for standard UI patterns like cards, lists, forms, dialogs, bottom sheets, and navigation patterns.
+description: Use when building Flutter UI screens that need cards, lists, forms, dialogs, loading states, or responsive layouts.
 ---
 
 # Flutter Widget Patterns - Quick Reference

@@ -1,30 +1,21 @@
 ---
 name: flutter-patterns
-description: Comprehensive Flutter development patterns covering widgets, testing, performance, security, and animations. Use when you need quick reference for Flutter best practices, common UI patterns, performance optimization techniques, security guidelines, or animation implementations.
+description: Use when implementing Flutter UI, writing tests, optimizing performance, securing data, or adding animations. Quick reference for production patterns.
 ---
 
 # Flutter Patterns
 
-A comprehensive collection of battle-tested Flutter patterns and best practices for building production-quality applications.
+Battle-tested patterns for production Flutter apps.
 
-## Overview
+## Quick Reference
 
-This skill provides quick-reference patterns for:
-- **Widget Patterns**: Common UI components (cards, lists, forms, dialogs, navigation)
-- **Testing Patterns**: Unit, widget, and integration testing approaches
-- **Performance Patterns**: Optimization techniques and performance checklists
-- **Security Patterns**: Security best practices and vulnerability prevention
-- **Animation Patterns**: Common animation implementations and transitions
-
-## When to Use This Skill
-
-Use this skill when you need:
-- Quick reference for standard Flutter UI patterns
-- Testing strategy guidance and examples
-- Performance optimization checklists
-- Security vulnerability prevention
-- Animation implementation examples
-- Best practices for common Flutter development scenarios
+| Need | File | Key Patterns |
+|------|------|--------------|
+| UI components | flutter-widget-patterns.md | Cards, lists, forms, dialogs, navigation |
+| Writing tests | flutter-testing-patterns.md | Unit, widget, BLoC, integration, mocking |
+| Performance | flutter-performance-checklist.md | Build, image, list, memory optimization |
+| Security | flutter-security-patterns.md | Storage, API, auth, encryption |
+| Animations | flutter-animation-patterns.md | Implicit, explicit, page transitions |
 
 ## Pattern Categories
 
@@ -107,23 +98,3 @@ User: "I want to animate a page transition"
 → Reference Animation Patterns for page transition examples
 ```
 
-## Pattern Quality
-
-All patterns in this skill are:
-- ✓ Production-tested and battle-proven
-- ✓ Following Flutter best practices
-- ✓ Performance-optimized
-- ✓ Security-conscious
-- ✓ Well-documented with code examples
-
-## Quick Access
-
-For fast pattern lookup, each category file is self-contained with:
-- Complete, runnable code examples
-- Explanation of when to use each pattern
-- Common pitfalls and how to avoid them
-- Performance and security considerations
-
----
-
-**Pro tip**: Combine patterns from different categories for comprehensive solutions. For example, use Widget Patterns + Performance Patterns + Security Patterns together when building production features.
