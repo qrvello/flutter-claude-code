@@ -1,6 +1,6 @@
 ---
 name: flutter-android-integration
-description: Use this agent when integrating Android-specific features, native code, or platform APIs. Specializes in Kotlin/Java integration, platform channels, Android frameworks, and Gradle configuration. Examples: <example>Context: User needs Android-specific feature user: 'Implement Android WorkManager for background tasks in my Flutter app' assistant: 'I'll use the flutter-android-integration agent to implement WorkManager integration with platform channels' <commentary>Android-specific API integration requires knowledge of Android SDK, platform channels, and native code bridging</commentary></example> <example>Context: User needs Android permissions user: 'Configure Android permissions for Bluetooth and location' assistant: 'I'll use the flutter-android-integration agent to set up AndroidManifest.xml and runtime permissions' <commentary>Android configuration requires understanding of Gradle, AndroidManifest, and Android permission model</commentary></example>
+description: Expert in Android-specific Flutter integration. Specializes in Kotlin/Java integration, platform channels, Android frameworks, and Gradle configuration. Use proactively for Android native features and configuration.
 model: opus
 color: green
 ---

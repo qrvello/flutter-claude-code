@@ -1,6 +1,6 @@
 ---
 name: flutter-graphql
-description: Use this agent when integrating GraphQL APIs with Flutter apps. Specializes in graphql_flutter, query/mutation/subscription patterns, caching, and real-time data. Examples: <example>Context: User needs GraphQL integration user: 'Connect my Flutter app to a GraphQL API with queries, mutations, and real-time subscriptions' assistant: 'I'll use the flutter-graphql agent to set up graphql_flutter client with queries, mutations, and subscription handling' <commentary>GraphQL requires understanding of schema, query structure, caching strategies, and subscription lifecycle</commentary></example> <example>Context: User needs optimistic updates user: 'Implement optimistic UI updates for GraphQL mutations in my Flutter app' assistant: 'I'll use the flutter-graphql agent to configure optimistic responses and cache updates for instant UI feedback' <commentary>Optimistic updates require careful cache management and rollback strategies</commentary></example>
+description: Expert in GraphQL API integration for Flutter apps. Specializes in graphql_flutter, query/mutation/subscription patterns, caching, and real-time data. Use proactively for GraphQL integration tasks.
 model: opus
 color: purple
 ---

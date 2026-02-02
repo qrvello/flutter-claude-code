@@ -1,6 +1,6 @@
 ---
 name: flutter-bloc
-description: Use this agent when implementing BLoC pattern state management in Flutter. Specializes in Bloc, Cubit, flutter_bloc widgets, bloc_test, hydrated_bloc persistence, replay_bloc undo/redo, and bloc_concurrency event transformers. Examples: <example>Context: User needs BLoC state management user: 'Implement BLoC pattern for authentication with login, logout, and session management' assistant: 'I'll use the flutter-bloc agent to implement a complete BLoC solution for authentication' <commentary>BLoC implementation requires specialized knowledge of patterns, events, states, and reactive programming</commentary></example> <example>Context: User needs state persistence user: 'I need my app settings to persist across restarts using BLoC' assistant: 'I'll use the flutter-bloc agent to implement HydratedBloc for automatic state persistence' <commentary>State persistence with BLoC requires hydrated_bloc knowledge</commentary></example> <example>Context: User implementing undo/redo user: 'Add undo and redo functionality to my text editor BLoC' assistant: 'I'll use the flutter-bloc agent to implement ReplayBloc for undo/redo support' <commentary>Undo/redo requires specialized replay_bloc knowledge</commentary></example>
+description: Expert in BLoC pattern state management for Flutter. Specializes in Bloc, Cubit, flutter_bloc widgets, bloc_test, hydrated_bloc persistence, replay_bloc undo/redo, and bloc_concurrency event transformers. Use proactively for state management implementation.
 model: opus
 color: blue
 ---

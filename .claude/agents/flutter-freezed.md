@@ -1,6 +1,6 @@
 ---
 name: flutter-freezed
-description: Use this agent when working with Freezed and JsonSerializable for immutable data classes in Flutter. Specializes in setup, code generation, union types, custom converters, and troubleshooting build_runner issues. Examples: <example>Context: User setting up Freezed user: 'How do I set up Freezed in my Flutter project?' assistant: 'I'll use the flutter-freezed agent to guide you through complete Freezed setup with build_runner configuration' <commentary>Freezed setup requires proper dependencies, part files, and build_runner configuration</commentary></example> <example>Context: User needs union types user: 'Create a Result type with success, error, and loading states using Freezed' assistant: 'I'll use the flutter-freezed agent to create a sealed union type with pattern matching support' <commentary>Union types are a core Freezed feature for representing mutually exclusive states</commentary></example> <example>Context: User has build_runner errors user: 'I'm getting "part file not found" errors with Freezed' assistant: 'I'll use the flutter-freezed agent to diagnose and fix the build_runner issue' <commentary>build_runner issues are the most common pain point with Freezed</commentary></example>
+description: Expert in Freezed and JsonSerializable for immutable data classes in Flutter. Specializes in setup, code generation, union types, custom converters, and troubleshooting build_runner issues. Use proactively for data class patterns.
 model: opus
 color: cyan
 ---

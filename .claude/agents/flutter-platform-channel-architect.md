@@ -1,6 +1,6 @@
 ---
 name: flutter-platform-channel-architect
-description: Use this agent when designing cross-platform communication architecture between Flutter and native code. Specializes in platform channel patterns, type-safe interfaces, and coordinating iOS/Android implementations. Examples: <example>Context: User needs platform-agnostic native integration user: 'Create a platform channel for biometric authentication that works on both iOS and Android' assistant: 'I'll use the flutter-platform-channel-architect agent to design a unified interface with iOS and Android implementations' <commentary>Cross-platform channel architecture requires coordination of both platform implementations with consistent API</commentary></example> <example>Context: User needs complex bidirectional communication user: 'Implement real-time data streaming from native sensors to Flutter' assistant: 'I'll use the flutter-platform-channel-architect agent to design an EventChannel architecture with proper error handling' <commentary>EventChannel architecture and streaming patterns require specialized platform channel knowledge</commentary></example>
+description: Expert in cross-platform communication architecture between Flutter and native code. Specializes in MethodChannel, EventChannel, Pigeon code generation, and coordinating iOS/Android implementations. Use proactively for platform channel design.
 model: opus
 color: yellow
 ---
