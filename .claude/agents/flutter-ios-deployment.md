@@ -1,6 +1,6 @@
 ---
 name: flutter-ios-deployment
-description: Use this agent when deploying Flutter apps to the Apple App Store. Specializes in iOS app signing, TestFlight, App Store Connect, provisioning profiles, and release management. Examples: <example>Context: User ready for App Store user: 'Help me deploy my Flutter app to the App Store with proper signing and TestFlight beta testing' assistant: 'I'll use the flutter-ios-deployment agent to guide you through code signing, TestFlight upload, and App Store submission' <commentary>iOS deployment requires Apple Developer account, certificates, provisioning profiles, and App Store Connect configuration</commentary></example> <example>Context: User has signing issues user: 'My iOS build is failing with code signing errors' assistant: 'I'll use the flutter-ios-deployment agent to debug certificate and provisioning profile issues' <commentary>Code signing issues are common and require understanding of certificates, identifiers, and profiles</commentary></example>
+description: Expert in deploying Flutter apps to Apple App Store. Specializes in iOS code signing, TestFlight, App Store Connect, provisioning profiles, and release management. Use proactively for iOS deployment tasks.
 model: opus
 color: blue
 ---

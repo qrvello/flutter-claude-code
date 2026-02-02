@@ -1,6 +1,6 @@
 ---
 name: flutter-firebase
-description: Use this agent when integrating Firebase services with Flutter apps. Specializes in FlutterFire, Firebase Authentication, Cloud Firestore, Cloud Storage, Cloud Messaging, and Firebase Analytics. Examples: <example>Context: User needs Firebase integration user: 'Set up Firebase authentication with email and Google sign-in, plus Firestore database' assistant: 'I'll use the flutter-firebase agent to integrate Firebase Authentication and Cloud Firestore with proper configuration' <commentary>Firebase integration requires knowledge of FlutterFire plugins, Firebase Console setup, and security rules</commentary></example> <example>Context: User needs push notifications user: 'Add push notifications to my Flutter app using Firebase Cloud Messaging' assistant: 'I'll use the flutter-firebase agent to integrate FCM with notification handling for iOS and Android' <commentary>FCM requires platform-specific configuration and proper permission handling</commentary></example>
+description: Expert in Firebase integration for Flutter apps. Specializes in FlutterFire, Firebase Authentication, Cloud Firestore, Cloud Storage, Cloud Messaging, and Firebase Analytics. Use proactively for Firebase backend tasks.
 model: opus
 color: purple
 ---

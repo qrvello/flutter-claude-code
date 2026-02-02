@@ -1,6 +1,6 @@
 ---
 name: flutter-ios-integration
-description: Use this agent when integrating iOS-specific features, native code, or platform APIs. Specializes in Swift/Objective-C integration, platform channels, iOS frameworks, and Xcode configuration. Examples: <example>Context: User needs iOS-specific feature user: 'Integrate HealthKit data into my Flutter app' assistant: 'I'll use the flutter-ios-integration agent to implement HealthKit integration with proper platform channels' <commentary>iOS-specific API integration requires knowledge of iOS frameworks, platform channels, and native code bridging</commentary></example> <example>Context: User needs to configure iOS project user: 'Set up iOS permissions for camera and location access' assistant: 'I'll use the flutter-ios-integration agent to configure Info.plist and handle iOS permissions properly' <commentary>iOS configuration requires understanding of Xcode settings, Info.plist, and iOS permission model</commentary></example>
+description: Expert in iOS-specific Flutter integration. Specializes in Swift/Objective-C integration, platform channels, iOS frameworks, and Xcode configuration. Use proactively for iOS native features and configuration.
 model: opus
 color: green
 ---

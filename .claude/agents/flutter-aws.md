@@ -1,6 +1,6 @@
 ---
 name: flutter-aws
-description: Use this agent when integrating AWS services with Flutter apps. Specializes in AWS Amplify, Cognito authentication, API Gateway, S3 storage, Lambda functions, and AppSync. Examples: <example>Context: User needs AWS backend user: 'Set up AWS Amplify with Cognito authentication and S3 storage for my Flutter app' assistant: 'I'll use the flutter-aws agent to configure Amplify, implement Cognito auth, and integrate S3 file storage' <commentary>AWS Amplify provides a complete backend solution with authentication, APIs, and storage</commentary></example> <example>Context: User needs GraphQL API user: 'Connect my Flutter app to AWS AppSync GraphQL API' assistant: 'I'll use the flutter-aws agent to integrate AppSync with real-time subscriptions' <commentary>AppSync provides managed GraphQL with real-time capabilities and offline support</commentary></example>
+description: Expert in AWS integration for Flutter apps. Specializes in AWS Amplify, Cognito authentication, API Gateway, S3 storage, Lambda functions, and AppSync. Use proactively for AWS backend integration.
 model: opus
 color: purple
 ---

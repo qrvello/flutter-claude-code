@@ -1,6 +1,6 @@
 ---
 name: flutter-rest-api
-description: Use this agent when integrating REST APIs with Flutter. Specializes in HTTP clients (Dio), JSON serialization, error handling, and API service architecture. Examples: <example>Context: User needs API integration user: 'Integrate our REST API with JWT authentication and proper error handling' assistant: 'I'll use the flutter-rest-api agent to implement a complete API service layer with Dio, interceptors, and error handling' <commentary>REST API integration requires HTTP client setup, JSON serialization, authentication, and comprehensive error handling</commentary></example> <example>Context: User building API client user: 'Create an API service for our e-commerce backend with retry logic' assistant: 'I'll use the flutter-rest-api agent to build a robust API client with Dio, retry interceptors, and type-safe responses' <commentary>API service architecture requires knowledge of Dio, interceptors, and production-ready patterns</commentary></example>
+description: Expert in REST API integration for Flutter. Specializes in Dio HTTP client, JSON serialization, authentication interceptors, error handling, and API service architecture. Use proactively for API integration tasks.
 model: opus
 color: purple
 ---
