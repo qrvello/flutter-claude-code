@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Development"
+  short_description: "Build, test, and deploy Flutter apps"
+  default_prompt: "Help me build a Flutter application with Clean Architecture, BLoC state management, and production-ready patterns."
