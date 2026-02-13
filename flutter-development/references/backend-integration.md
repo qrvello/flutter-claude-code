@@ -49,22 +49,17 @@ import 'package:dio/dio.dart';
 
 class ApiClient {
   late final Dio _dio;
-
   ApiClient({String? baseUrl}) {
     _dio = Dio(BaseOptions(
       baseUrl: baseUrl ?? 'https://api.example.com',
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 3),
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-    ));
-    _dio.interceptors.addAll([
-      AuthInterceptor(_tokenStorage),
-      RetryInterceptor(),
-      ErrorInterceptor(),
-      LogInterceptor(requestBody: true, responseBody: true),
+    ))..interceptors.addAll([
+      AuthInterceptor(_tokenStorage), RetryInterceptor(),
+      ErrorInterceptor(), LogInterceptor(requestBody: true, responseBody: true),
     ]);
   }
-
   Dio get dio => _dio;
 }
 ```
@@ -344,7 +339,6 @@ class FCMDataSource {
 ```
 
 Platform config: add `com.google.firebase.messaging.default_notification_channel_id` meta-data to Android manifest; add `fetch` and `remote-notification` to `UIBackgroundModes` in iOS `Info.plist`.
-
 ### Security Rules
 
 ```javascript
@@ -460,7 +454,7 @@ class AmplifyAuthDataSource {
 
 ### AppSync GraphQL
 
-Define a schema, then `amplify push` generates Dart models automatically:
+Define a schema, then `amplify push` generates Dart models:
 
 ```graphql
 # amplify/backend/api/myapi/schema.graphql
@@ -515,9 +509,7 @@ class AmplifyStorageDataSource {
 }
 ```
 
-### Lambda Integration
-
-Lambda functions are created automatically when you `amplify add api` with REST. The generated function handles CRUD against DynamoDB. Custom logic goes in `amplify/backend/function/<name>/src/index.js`.
+Lambda functions are created automatically with `amplify add api` (REST). Custom logic goes in `amplify/backend/function/<name>/src/index.js`.
 
 ---
 
